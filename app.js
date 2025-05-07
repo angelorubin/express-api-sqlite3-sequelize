@@ -32,6 +32,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+const myLogger = function (req, res, next) {
+  console.log('LOGGED', req, res)
+  next()
+}
+
+app.use(myLogger)
 // routes
 app.use('/users', userRoutes);
 
